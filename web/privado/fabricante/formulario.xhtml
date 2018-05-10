@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Edição de Fabricantes</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:messages/>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="ID"/>
+                <h:inputText value="#{controleFabricante.objeto.id}"
+                             size="5" readonly="true"/>
+                <h:outputLabel value="Nome"/>
+                <h:inputText value="#{controleFabricante.objeto.nome}"
+                             size="40" maxlength="40"/>
+                <f:facet name="header">
+                    <h:outputLabel value="Edição de Fabricantes"/>
+                </f:facet>
+                <f:facet name="footer">
+                    <div align="center">
+<!--immediate = true cancela sem passar pela validação, caso contrário teria
+que validar os campos para poder Cancelar -->
+                        <h:commandButton value="Cancelar"
+                                         action="#{controleFabricante.cancelar()}"
+                                         immediate="true"/>
+                        <h:commandButton value="Salvar"
+                                         action="#{controleFabricante.salvar()}"/>
+                    </div>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

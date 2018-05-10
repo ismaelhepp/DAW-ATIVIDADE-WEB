@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Listagem de Fabricantes</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:messages/>
+            <h:commandButton value="Novo"
+                             action="#{controleFabricante.novo()}"/>
+            <h:dataTable value="#{controleFabricante.dao.lista}"
+                         var="obj">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="ID"/>
+                    </f:facet>
+                    <h:outputLabel value="#{obj.id}"/>
+                    <f:facet name="header">
+                        <h:outputLabel value="Nome"/>
+                    </f:facet>
+                    <h:outputLabel value="#{obj.nome}"/>
+                </h:column>
+                <h:column>
+                    <h:commandLink value="Editar"
+                                   action="#{controleFabricante.editar(obj.id)}"/>
+                </h:column>
+                <h:column>
+                    <h:commandLink value="Remover"
+                                   action="#{controleFabricante.remover(obj.id)}"
+                                   onclick="if(!confirm('Confirma a exclusão do objeto?'))
+                                   return false"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

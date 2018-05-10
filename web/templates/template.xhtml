@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <!--ISO-8859-1 para salvar acentuação corretamente no banco de dados-->
+    <f:view encoding="ISO-8859-1" contentType="text/html">
+        <h:head>
+            <title><ui:insert name="titulo"></ui:insert></title>
+            <!--library = pasta dentro da pasta resources-->
+            <h:outputStylesheet library="css" name="estilos.css"/>
+            <h:outputScript library="js" name="scripts.js"/>
+        </h:head>
+        <!--p: biblioteca primefaces-->
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" header="Sistema com JSF da turma 5N1" 
+                          style="text-align: center">
+                <h:form id="menu">
+                    <p:megaMenu>
+                        <p:menuitem value="Inicio" url="/index.xhtml" 
+                                    icon="ui-icon-home"/>
+                        <p:submenu label="Cadastros">
+                            <p:column>
+                                <p:submenu label="Básicos">
+                                    <p:menuitem  action="#{controleCliente.listar()}"
+                                                 value="Manutenção de Clientes"
+                                                 ajax="false"/>
+                                    <p:menuitem  action="#{controleCidade.listar()}"
+                                                 value="Manutenção de Cidades"
+                                                 ajax="false"/>
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu>
+                    </p:megaMenu>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <ui:insert name="conteudo"></ui:insert>
+            </p:layoutUnit>
+            <!--inserção de modais, precisa ser fora de um layoutunit para funcionar-->
+            <ui:insert name="dialogos">
+            </ui:insert>
+            <p:layoutUnit position="south">
+                <ui:include src="ajaxstatus.xhtml"/>
+                <div align="center">Direitos Reservados</div>
+            </p:layoutUnit>
+        </p:layout>
+    </f:view>
+</html>
+

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="titulo">Edição de Clientes</ui:define>
+        <ui:define name="conteudo">
+            <h:form>
+                <p:growl/>
+                <div align="center">
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        <p:outputLabel value="Edição de Clientes"/>
+                    </f:facet>
+                    <f:facet name="footer">
+                        <div align="center">
+                            <p:commandButton value="Cancelar" icon="ui-icon-cancel"
+                                             action="#{controleCliente.cancelar()}"
+                                             ajax="false" immediate="true"/>
+                            <p:commandButton value="Salvar" icon="ui-icon-disk"
+                                             action="#{controleCliente.salvar()}"
+                                             ajax="false"/>
+                        </div>
+                    </f:facet>
+                    <p:outputLabel value="ID"/>
+                    <p:inputText value="#{controleCliente.objeto.id}" 
+                                 readonly="true" 
+                                 size="5"/>
+                    <p:outputLabel value="Nome" for="txtNome"/>
+                    <p:inputText id="txtNome" value="#{controleCliente.objeto.nome}"
+                                 size="40" maxlength="40" placeholder="Obrigatório"/>
+                    <p:outputLabel value="RG" for="txtRG"/>
+                    <p:inputText id="txtRG" value="#{controleCliente.objeto.rg}"
+                                 size="40" maxlength="12" placeholder="Obrigatório"/>
+                    <p:outputLabel value="CPF" for="txtCPF"/>
+                    <p:inputText id="txtCPF" value="#{controleCliente.objeto.cpf}"
+                                 size="40" maxlength="14" placeholder="Obrigatório"/>
+                    <p:outputLabel value="Endereço" for="txtEndereco"/>
+                    <p:inputText id="txtEndereco" value="#{controleCliente.objeto.endereco}"
+                                 size="40" maxlength="40" placeholder="Obrigatório"/>
+                    <p:outputLabel value="Bairro" for="txtBairro"/>
+                    <p:inputText id="txtBairro" value="#{controleCliente.objeto.bairro}"
+                                 size="40" maxlength="40" placeholder="Obrigatório"/>
+                    <p:outputLabel value="CEP" for="txtCEP"/>
+                    <p:inputText id="txtCEP" value="#{controleCliente.objeto.cep}"
+                                 size="40" maxlength="40" placeholder="Obrigatório"/>
+                    <p:outputLabel value="Telefone" for="txtTelefone"/>
+                    <p:inputText id="txtTelefone" value="#{controleCliente.objeto.telefone}"
+                                 size="40" maxlength="40" placeholder="Obrigatório"/>
+                    <p:outputLabel value="Cidade" for="txtCidade"/>
+                    <p:selectOneMenu id="txtCidade" value="#{controleCliente.objeto.cidade}"
+                                     filter="true" filterMatchMode="startsWith">
+                        <f:converter converterId="converterCidade"/>
+                        <f:selectItem noSelectionOption="true"
+                                      itemLabel="Selecione um registro"/>
+                        <f:selectItems value="#{controleCliente.daoCidade.listaObjetos}"
+                                       var="c" itemLabel="#{c.nome}"/>
+                    </p:selectOneMenu>
+                    
+                </p:panelGrid>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
